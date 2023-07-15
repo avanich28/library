@@ -153,6 +153,29 @@ body {
   position: relative;
 }
 
+/* page load animation */
+@keyframes move-down {
+  0% {
+    transform: translateY(-18px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(inherit);
+    opacity: 1;
+  }
+}
+
+@keyframes move-up {
+  0% {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(inherit);
+    opacity: 1;
+  }
+}
+
 /* set template */
 .container {
   display: grid;
@@ -180,6 +203,7 @@ body {
   color: var(--background-color);
   font-size: 2rem;
   font-weight: bold;
+  animation: move-down 2s forwards;
 }
 
 .logo {
@@ -210,6 +234,7 @@ body {
   justify-content: center;
   gap: 80px;
   margin: 15px 0;
+  animation: move-up 2s forwards;
 }
 
 .count-display {
@@ -238,6 +263,7 @@ body {
   grid-area: main;
   display: flex;
   flex-direction: column;
+  animation: move-up 2s forwards;
 }
 
 .btn--add-new-book {
@@ -271,6 +297,7 @@ body {
 
 .results {
   padding: 0 20px;
+  padding-bottom: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
