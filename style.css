@@ -1,0 +1,474 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,600;1,400;1,600&display=swap");
+/* Mayer style */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+  /* set font and default font */
+  font-family: "Rubik", system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:root {
+  --background-color: white;
+  --font-color: #222120;
+  --font-color-count-read: rgb(49, 141, 49);
+  --font-color-count-not-read: #d05449;
+  --background-color-btn-log-in: #b3b77d;
+  --background-color-hover-btn-log-in: #b3b77dc7;
+  --background-color-hover-btn-add-book: #efeeee;
+  --background-color-btn-read: rgba(166, 250, 153, 0.656);
+  --background-color-btn-unread: rgb(255, 239, 199);
+  --background-color-hover-btn-read: rgb(143, 232, 130);
+  --background-color-hover-btn-unread: rgb(247, 212, 98);
+  --background-color-hover-btn-remove: rgb(250, 178, 167);
+  --color-btn-read: rgb(18, 131, 0);
+  --color-btn-unread: rgb(242, 107, 17);
+  --color-hover-btn-remove: rgb(201, 27, 0);
+  --color-border-focus: rgb(195, 86, 36);
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--font-color);
+  position: relative;
+}
+
+/* set template */
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, auto) 1fr;
+  grid-template-areas:
+    "nav nav nav"
+    "header header header"
+    "main main main";
+  background-color: var(--background-color);
+}
+
+.container--nav {
+  grid-area: nav;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 65px;
+  background: linear-gradient(
+    129deg,
+    rgb(11, 55, 94) 0%,
+    rgb(29, 66, 111) 35%,
+    rgb(58, 107, 124) 100%
+  );
+  color: var(--background-color);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.logo > img {
+  width: 60px;
+}
+
+.btn--log-in {
+  align-self: center;
+  border: none;
+  padding: 5px 35px;
+  border-radius: 30px;
+  background-color: var(--background-color-btn-log-in);
+  color: var(--font-color);
+  font-size: 0.48em;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.container--header {
+  grid-area: header;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin: 15px 0;
+}
+
+.count-display {
+  text-align: center;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.count-display > div {
+  font-weight: bold;
+}
+
+.count-read > div {
+  color: var(--font-color-count-read);
+}
+
+.count-not-read > div {
+  color: var(--font-color-count-not-read);
+}
+
+.count-display > p {
+  font-size: 30px;
+}
+
+.container--main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn--add-new-book {
+  margin: 10px auto;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 18px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn--log-in:hover,
+.btn--add-new-book:hover {
+  transform: scale(1.05);
+}
+
+.btn--log-in:hover {
+  background-color: var(--background-color-hover-btn-log-in);
+}
+
+.btn--add-new-book:hover {
+  background-color: var(--background-color-hover-btn-add-book);
+}
+
+.btn--log-in:active,
+.btn--add-new-book:active {
+  transform: scale(1);
+}
+
+.results {
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.card {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  font-size: 1.08rem;
+}
+
+.detail {
+  display: flex;
+  gap: 15px;
+  line-height: 48px;
+}
+
+.first-column {
+  font-weight: bold;
+}
+
+.card > button {
+  padding: 10px 0;
+  font-size: 1.03rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn--status-read {
+  background-color: var(--background-color-btn-read);
+  color: var(--color-btn-read);
+}
+
+.btn--status-unread {
+  background-color: var(--background-color-btn-unread);
+  color: var(--color-btn-unread);
+}
+
+.btn--status-read:hover {
+  background-color: var(--background-color-hover-btn-read);
+}
+
+.btn--status-unread:hover {
+  background-color: var(--background-color-hover-btn-unread);
+}
+
+.btn--remove:hover {
+  background-color: var(--background-color-hover-btn-remove);
+  color: var(--color-hover-btn-remove);
+}
+
+.btn--status-read:active,
+.btn--status-unread:active,
+.btn--remove:active {
+  transform: scale(0.98);
+}
+
+/* hidden form */
+.hidden {
+  display: none !important;
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.add-book-window {
+  position: fixed;
+  top: 25%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: max-content;
+  z-index: 3;
+  padding: 20px 10px;
+  background-color: var(--background-color-btn-log-in);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn--close-modal {
+  align-self: flex-end;
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn--close-modal:hover {
+  background-color: var(--background-color-hover-btn-add-book);
+}
+
+form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  font-size: 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: whitesmoke;
+}
+
+input[type="text"],
+input[type="number"] {
+  font-size: 18px;
+  padding: 10px 8px;
+  width: 300px;
+  border: none;
+  border-radius: 8px;
+}
+
+.checkbox-control {
+  display: grid;
+  grid-template-columns: auto 1em;
+  gap: 10px;
+}
+
+input[type="checkbox"] {
+  margin-top: -2px;
+  font: inherit;
+  color: currentColor;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 2px;
+  border: 1px solid black;
+
+  /* for checked mark */
+  display: grid;
+  place-content: center;
+}
+
+input:not(input[type="checkbox"]):focus {
+  outline: 2px solid var(--color-border-focus);
+  background-color: var(--background-color);
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.8em;
+  height: 0.8em;
+  transform: scale(0);
+  transition: all 0.3s ease-in-out;
+  box-shadow: inset 1em 1em var(--font-color-count-not-read);
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:checked {
+  border: none;
+}
+
+.btn--submit-form {
+  margin-top: 18px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 30px;
+  font-size: 19px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn--submit-form:hover {
+  transform: scale(1.03);
+  background-color: rgb(217, 218, 218);
+}
+
+.btn--submit-form:active {
+  transform: scale(1);
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library app</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/7fd19f1246.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="container--nav">
+        <div class="logo">
+          <img src="img/glasses.png" alt="glasses" />
+          Library
+        </div>
+        <button class="btn--log-in">LOGIN</button>
+      </nav>
+
+      <header class="container--header">
+        <div class="count-read count-display">
+          <div>Read</div>
+          <p>1</p>
+        </div>
+        <div class="count-not-read count-display">
+          <div>Not Read</div>
+          <p>0</p>
+        </div>
+      </header>
+
+      <main class="container--main">
+        <button class="btn--add-new-book">+ Add Book</button>
+        <ul class="results">
+          <li class="card">
+            <div class="detail">
+              <div class="first-column">
+                <div>Title:</div>
+                <div>Author:</div>
+                <div>Pages:</div>
+              </div>
+              <div class="second-column">
+                <div>Spy x Family</div>
+                <div>Endo Tatsuyas</div>
+                <div>28</div>
+              </div>
+            </div>
+            <button class="btn--status-read">Read</button>
+            <button class="btn--remove">Remove</button>
+          </li>
+        </ul>
+      </main>
+    </div>
+    <div class="overlay hidden"></div>
+    <div class="add-book-window hidden">
+      <button class="btn--close-modal">
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </button>
+      <form action="post">
+        <h3>Your New Book</h3>
+        <label for="title"></label>
+        <input type="text" name="title" id="title" placeholder="Title" />
+        <label for="author"></label>
+        <input type="text" name="author" id="author" placeholder="Author" />
+        <label for="pages"></label>
+        <input
+          type="number"
+          name="pages"
+          id="pages"
+          min="1"
+          placeholder="How many pages?"
+        />
+        <label class="checkbox-control" for="status"
+          >Have you read this book?
+          <input type="checkbox" name="status" id="status"
+        /></label>
+
+        <button class="btn--submit-form">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
