@@ -16,7 +16,7 @@
       <nav class="container--nav">
         <div class="logo">
           <img src="img/glasses.png" alt="glasses" />
-          Library
+          Bookie
         </div>
         <button class="btn--log-in">LOGIN</button>
       </nav>
@@ -24,7 +24,7 @@
       <header class="container--header">
         <div class="count-read count-display">
           <div>Read</div>
-          <p>1</p>
+          <p>0</p>
         </div>
         <div class="count-not-read count-display">
           <div>Not Read</div>
@@ -35,7 +35,7 @@
       <main class="container--main">
         <button class="btn--add-new-book">+ Add Book</button>
         <ul class="results">
-          <li class="card">
+          <!-- <li class="card" data-index="0">
             <div class="detail">
               <div class="first-column">
                 <div>Title:</div>
@@ -50,7 +50,7 @@
             </div>
             <button class="btn--status btn--status-read">Read</button>
             <button class="btn--remove">Remove</button>
-          </li>
+          </li> -->
         </ul>
       </main>
     </div>
@@ -59,12 +59,24 @@
       <button class="btn--close-modal">
         <i class="fa-solid fa-xmark fa-xl"></i>
       </button>
-      <form action="post">
+      <form class="upload">
         <h3>Your New Book</h3>
         <label for="title"></label>
-        <input type="text" name="title" id="title" placeholder="Title" />
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Title"
+          required
+        />
         <label for="author"></label>
-        <input type="text" name="author" id="author" placeholder="Author" />
+        <input
+          type="text"
+          name="author"
+          id="author"
+          placeholder="Author"
+          required
+        />
         <label for="pages"></label>
         <input
           type="number"
@@ -72,6 +84,7 @@
           id="pages"
           min="1"
           placeholder="How many pages?"
+          required
         />
         <label class="checkbox-control" for="status"
           >Have you read this book?

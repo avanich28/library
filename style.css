@@ -222,7 +222,7 @@ body {
   padding: 5px 35px;
   border-radius: 30px;
   background-color: var(--background-color-btn-log-in);
-  color: var(--font-color);
+  color: var(--background-color);
   font-size: 0.48em;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
@@ -300,6 +300,7 @@ body {
   padding-bottom: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 .card {
