@@ -1,7 +1,7 @@
 "use strict";
 
-const read = document.querySelector(".count-read");
-const notRead = document.querySelector(".count-not-read");
+const readElement = document.querySelector(".count-read");
+const notReadElement = document.querySelector(".count-not-read");
 const btnAddBook = document.querySelector(".btn--add-new-book");
 const formUpload = document.querySelector(".upload");
 const btnCloseModal = document.querySelector(".btn--close-modal");
@@ -10,9 +10,10 @@ const overlay = document.querySelector(".overlay");
 const modal = document.querySelector(".add-book-window");
 const results = document.querySelector(".results");
 
+// Contain instances
 let myLibrary = [];
 
-// Constructor object
+// Class
 function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
@@ -26,20 +27,7 @@ Book.prototype.toggleStatus = function () {
   return toggle;
 };
 
-function addBookToLibrary(dataArr) {
-  // Get value from data
-  const dataValue = dataArr.map((entry) => entry[1]);
-  // BUG
-  dataValue[3] =
-    dataValue[3] === "on" || dataValue[3] === "read" ? "read" : "not read"; // change status value
-
-  // Convert data to object
-  const data = new Book(...dataValue);
-
-  // Add data to myLibrary array
-  myLibrary.push(data);
-}
-
+// 1) View
 const renderCard = function (data) {
   // Create card
   const markup = `
@@ -66,6 +54,15 @@ const renderCard = function (data) {
   results.insertAdjacentHTML("afterbegin", markup);
 };
 
+const renderNumber = function (readNum, notReadNum) {
+  const [readDisplay, notReadDisplay] = [readElement, notReadElement].map(
+    (el) => el.querySelector("p")
+  );
+
+  readDisplay.textContent = readNum;
+  notReadDisplay.textContent = notReadNum;
+};
+
 const toggleHidden = function () {
   // Hide module
   [overlay, modal].forEach((x) => x.classList.toggle("hidden"));
@@ -76,6 +73,21 @@ const toggleHidden = function () {
     else input.value = "";
   });
 };
+
+// 2) Model
+function addBookToLibrary(dataArr) {
+  // Get value from data
+  const dataValue = dataArr.map((entry) => entry[1]);
+  // BUG
+  dataValue[3] =
+    dataValue[3] === "on" || dataValue[3] === "read" ? "read" : "not read"; // change status value
+
+  // Convert data to object
+  const data = new Book(...dataValue);
+
+  // Add data to myLibrary array
+  myLibrary.push(data);
+}
 
 const getIndex = function (el) {
   return +el.closest(".card").dataset.index;
@@ -92,12 +104,7 @@ const countStatus = function () {
   const readNum = myLibrary.filter((book) => book.status === "read").length;
   const notReadNum = myLibrary.length - readNum;
 
-  const [readDisplay, notReadDisplay] = [read, notRead].map((el) =>
-    el.querySelector("p")
-  );
-
-  readDisplay.textContent = readNum;
-  notReadDisplay.textContent = notReadNum;
+  renderNumber(readNum, notReadNum);
 };
 
 const persistMyLibrary = function () {
@@ -109,7 +116,8 @@ const clearMyLibrary = function () {
 };
 // clearMyLibrary();
 
-const uploadLocalStorage = function () {
+// 3) Controller
+const controlLocalStorage = function () {
   // Fetch data from localStorage
   const storage = localStorage.getItem("myLibrary");
 
@@ -187,8 +195,9 @@ const controlForm = function (e) {
   persistMyLibrary();
 };
 
+// Start
 const init = function () {
-  uploadLocalStorage();
+  controlLocalStorage();
 
   formUpload.addEventListener("submit", controlForm);
 
