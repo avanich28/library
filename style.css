@@ -426,7 +426,7 @@ form {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
   font-size: 1rem;
 }
@@ -494,6 +494,12 @@ input[type="checkbox"]:checked::before {
 
 input[type="checkbox"]:checked {
   border: none;
+}
+
+.error {
+  margin-top: -3px;
+  color: red;
+  font-size: 0.8rem;
 }
 
 .btn--submit-form {

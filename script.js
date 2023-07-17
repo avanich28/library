@@ -6,6 +6,7 @@ const btnAddBook = document.querySelector(".btn--add-new-book");
 const formUpload = document.querySelector(".upload");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const inputs = document.querySelectorAll("input");
+const errors = document.querySelectorAll(".error");
 const overlay = document.querySelector(".overlay");
 const modal = document.querySelector(".add-book-window");
 const results = document.querySelector(".results");
@@ -28,6 +29,13 @@ Book.prototype.toggleStatus = function () {
 };
 
 // 1) View
+const renderError = function (type, errIndex) {
+  const msgErrText = "Please enter between 1 and 20 characters";
+  const msgErrPages = "Please enter a number between 1 and 10,000 ";
+  if (type === "pages") errors[errIndex].textContent = msgErrPages;
+  else errors[errIndex].textContent = msgErrText;
+};
+
 const renderCard = function (data) {
   // Create card
   const markup = `
@@ -75,6 +83,16 @@ const toggleHidden = function () {
 };
 
 // 2) Model
+const getResultRegEx = (check) => (check ? true : false);
+
+const checkInput = function (type, value) {
+  const regExText = /^[a-zA-Z0-9_\s\.\-]{1,20}$/;
+  const regExPages = /^[0-9]{1,5}$/;
+
+  if (type === "pages") return getResultRegEx(value.match(regExPages));
+  else return getResultRegEx(value.match(regExText));
+};
+
 function addBookToLibrary(dataArr) {
   // Get value from data
   const dataValue = dataArr.map((entry) => entry[1]);
@@ -174,6 +192,14 @@ const controlRemoveCard = function (e, resultsElement) {
   persistMyLibrary();
 };
 
+const controlError = function (e) {
+  const target = e.target;
+  const match = checkInput(target.id, target.value);
+  console.log(match);
+
+  if (!match) renderError(e.target.id, +target.dataset.err);
+};
+
 const controlForm = function (e) {
   e.preventDefault();
   // Get data
@@ -198,6 +224,10 @@ const controlForm = function (e) {
 // Start
 const init = function () {
   controlLocalStorage();
+
+  Array.from(inputs)
+    .slice(0, 3)
+    .forEach((input) => input.addEventListener("input", controlError));
 
   formUpload.addEventListener("submit", controlForm);
 
