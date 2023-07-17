@@ -29,11 +29,15 @@ Book.prototype.toggleStatus = function () {
 };
 
 // 1) View
-const renderError = function (type, errIndex) {
+const renderError = function (type, errIndex, match) {
   const msgErrText = "Please enter between 1 and 20 characters";
   const msgErrPages = "Please enter a number between 1 and 10,000 ";
-  if (type === "pages") errors[errIndex].textContent = msgErrPages;
-  else errors[errIndex].textContent = msgErrText;
+
+  if (match) errors[errIndex].textContent = "";
+  else if (!match && type === "pages")
+    errors[errIndex].textContent = msgErrPages;
+  else if (!match && (type === "title" || type === "author"))
+    errors[errIndex].textContent = msgErrText;
 };
 
 const renderCard = function (data) {
@@ -80,6 +84,9 @@ const toggleHidden = function () {
     if (input.type === "checkbox") input.checked = false;
     else input.value = "";
   });
+
+  // Clear Error message
+  Array.from(errors).forEach((err) => err.textContent = "");
 };
 
 // 2) Model
@@ -195,9 +202,7 @@ const controlRemoveCard = function (e, resultsElement) {
 const controlError = function (e) {
   const target = e.target;
   const match = checkInput(target.id, target.value);
-  console.log(match);
-
-  if (!match) renderError(e.target.id, +target.dataset.err);
+  renderError(e.target.id, +target.dataset.err, match);
 };
 
 const controlForm = function (e) {
