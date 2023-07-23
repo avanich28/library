@@ -15,18 +15,20 @@ const results = document.querySelector(".results");
 let myLibrary = [];
 
 // Class
-function Book(title, author, pages, status) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.status = status;
-}
+class Book {
+  constructor(title, author, pages, status) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
+  }
 
-Book.prototype.toggleStatus = function () {
-  const toggle = this.status === "read" ? "not read" : "read";
-  this.status = toggle;
-  return toggle;
-};
+  toggleStatus() {
+    const toggle = this.status === "read" ? "not read" : "read";
+    this.status = toggle;
+    return toggle;
+  }
+}
 
 // 1) View
 const renderError = function (type, errIndex, match) {
@@ -86,7 +88,7 @@ const toggleHidden = function () {
   });
 
   // Clear Error message
-  Array.from(errors).forEach((err) => err.textContent = "");
+  Array.from(errors).forEach((err) => (err.textContent = ""));
 };
 
 // 2) Model
